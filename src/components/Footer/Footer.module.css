@@ -1,0 +1,7 @@
+.footer {
+    font-family: var(--ff-primary-regular);
+    font-size: var(--fs-100);
+    color: var(--clr-primary-100);
+    text-align: right;
+    padding: 0.6rem 4rem;
+}

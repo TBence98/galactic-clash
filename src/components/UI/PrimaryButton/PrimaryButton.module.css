@@ -1,0 +1,9 @@
+.primary_button {
+    border: none;
+    background-color: var(--clr-accent-500);
+    color: var(--clr-secondary-900);
+    padding: 0.7rem 5.5rem;
+    font-family: var(--ff-primary-bold);
+    font-size: var(--fs-300);
+    border-radius: 6px;
+}

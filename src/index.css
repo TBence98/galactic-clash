@@ -1,0 +1,141 @@
+@font-face {
+    font-family: "poppins-black";
+    src: url("./assets/Poppins-Black.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "poppins-bold";
+    src: url("./assets/Poppins-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "poppins-extra-bold";
+    src: url("./assets/Poppins-ExtraBold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "poppins-medium";
+    src: url("./assets/Poppins-Medium.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "poppins-regular";
+    src: url("./assets/Poppins-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "distant-galaxy";
+    src: url("./assets/SfDistantGalaxyAltoutline-e2Bp.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "star-jedi";
+    src: url("./assets/Starjedi.ttf") format("truetype");
+}
+
+:root {
+    --clr-primary-100: #ffffff;
+
+    --clr-secondary-900: #000000;
+    --clr-secondary-700: #333333;
+    --clr-secondary-500: #8a8a8a;
+
+    --clr-accent-500: #f7b500;
+
+    --clr-danger-500: #ff3232;
+
+    --ff-primary-black: "poppins-black", sans-serif;
+    --ff-primary-bold: "poppins-bold", sans-serif;
+    --ff-primary-extra-bold: "poppins-extra-bold", sans-serif;
+    --ff-primary-medium: "poppins-medium", sans-serif;
+    --ff-primary-regular: "poppins-regular", sans-serif;
+    --ff-primary-bold: "poppins-bold", sans-serif;
+    --ff-distant-galaxy: "distant-galaxy", sans-serif;
+    --ff-star-jedi: "star-jedi", sans-serif;
+
+    --fs-100: 12px;
+    --fs-200: 14px;
+    --fs-300: 16px;
+    --fs-400: 24px;
+    --fs-500: 30px;
+    --fs-600: 60px;
+    --fs-700: 70px;
+    --fs-800: 90px;
+
+    --size-100: 0.25rem;
+    --size-200: 0.5rem;
+    --size-300: 0.75rem;
+    --size-400: 1rem;
+    --size-500: 1.5rem;
+    --size-600: 2rem;
+    --size-700: 3rem;
+    --size-800: 4rem;
+    --size-900: 5rem;
+}
+
+/* https://piccalil.li/blog/a-modern-css-reset */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove default margin */
+* {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+    list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+/* Set core body defaults */
+body {
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg {
+    max-width: 100%;
+    display: block;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
