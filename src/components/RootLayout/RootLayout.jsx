@@ -8,10 +8,12 @@ import Footer from "../Footer/Footer";
 const RootLayout = () => {
     return (
         <div className={classes.main_layout}>
-            <MainNavigation />
-            <main>
-                <Outlet />
-            </main>
+            <div className={classes.main_layout__main_conent}>
+                <MainNavigation />
+                <main>
+                    <Outlet />
+                </main>
+            </div>
             <Footer />
         </div>
     );

@@ -1,0 +1,29 @@
+.main_navigation {
+    padding: 1rem 0 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--ff-primary-bold);
+    font-size: var(--fs-300);
+    color: var(--clr-primary-100);
+    border-bottom: solid 1px var(--clr-primary-100);
+}
+
+.main_navigation__user::before {
+    content: url("../../assets/user.svg");
+    margin-right: 0.7rem;
+    position: relative;
+    top: 4px;
+}
+
+.main_navigation__leave a {
+    color: var(--clr-primary-100);
+    text-decoration: none;
+}
+
+.main_navigation__leave::after {
+    content: url("../../assets/logout.svg");
+    margin-left: 0.7rem;
+    position: relative;
+    top: 4px;
+}

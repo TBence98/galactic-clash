@@ -1,5 +1,9 @@
 .main_layout {
     height: 100vh;
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: 1fr auto;
+}
+
+.main_layout__main_conent {
+    margin-inline: 8.9rem;
 }
