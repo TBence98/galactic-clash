@@ -1,0 +1,28 @@
+.slider {
+    display: flex;
+    align-items: center;
+}
+
+.dots {
+    display: flex;
+    margin-right: 2rem;
+}
+
+.button {
+    border: none;
+    cursor: pointer;
+    width: 50px;
+    height: 51px;
+    background-color: transparent;
+    background-image: url(/src/assets/arrow_circle.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.button__next {
+    transform: rotate(0.5turn);
+    margin-left: 1.2rem;
+}
+
+.button__prev {
+}

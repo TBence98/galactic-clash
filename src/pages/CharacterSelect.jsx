@@ -4,10 +4,13 @@ import classes from "./CharacterSelect.module.css";
 
 import CharactersContext from "../store/characters-context";
 import AuthContext from "../store/auth-context";
+import SlideHeader from "../components/SlideHeader/SlideHeader";
+import CharacterSlide from "../components/CharacterSlide/CharacterSlide";
 
 const CharacterSelect = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [activeSlide, setActiveSlide] = useState(0);
 
     const charactersCtx = useContext(CharactersContext);
     const authCtx = useContext(AuthContext);
@@ -37,22 +40,38 @@ const CharacterSelect = () => {
         return <h1>Loading...</h1>;
     }
 
+    const activeCharacter = charactersCtx.characters[activeSlide];
+
+    function nextSlide() {
+        if (activeSlide === charactersCtx.characters.length - 1) {
+            setActiveSlide(0);
+        } else {
+            setActiveSlide((prevValue) => prevValue + 1);
+        }
+    }
+    function prevSlide() {
+        if (activeSlide === 0) {
+            setActiveSlide(charactersCtx.characters.length - 1);
+        } else {
+            setActiveSlide((prevValue) => prevValue - 1);
+        }
+    }
+
     return (
         <div className={classes.character_select}>
-            <h1>Character select</h1>
-            {charactersCtx.characters.map((character) => {
-                const nameParts = character.name.split("<br>");
-                return (
-                    <p key={character.id}>
-                        {nameParts.map((part, index) => (
-                            <React.Fragment key={`${character.id}-${index}`}>
-                                {part}
-                                {index < nameParts.length - 1 ? <br /> : null}
-                            </React.Fragment>
-                        ))}
-                    </p>
-                );
-            })}
+            <SlideHeader
+                side={activeCharacter.side}
+                power={activeCharacter.force.power}
+                activeSlide={activeSlide}
+                slideLength={charactersCtx.characters.length}
+                nextSlide={nextSlide}
+                prevSlide={prevSlide}
+            />
+            <CharacterSlide
+                name={activeCharacter.name}
+                description={activeCharacter.description}
+                id={activeCharacter.id}
+            />
         </div>
     );
 };
