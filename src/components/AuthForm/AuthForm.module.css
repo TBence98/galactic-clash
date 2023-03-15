@@ -22,3 +22,9 @@
     border-radius: 6px;
     text-align: center;
 }
+
+.form_group__error_text {
+    font-family: var(--ff-primary-bold);
+    font-size: var(--fs-200);
+    color: #ff0000;
+}

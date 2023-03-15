@@ -1,61 +1,60 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 import classes from "./AuthForm.module.css";
 
 import PrimaryButton from "../UI/PrimaryButton/PrimaryButton";
-import AuthContext from "../../store/auth-context";
 
-const AuthForm = () => {
-    const authCtx = useContext(AuthContext);
-    const navigate = useNavigate();
+const AuthForm = ({ submitHandler }) => {
+    const initialValues = {
+        email: "",
+        password: "",
+    };
 
-    function submitHandler(event) {
-        event.preventDefault();
+    const validationSchema = Yup.object({
+        email: Yup.string()
+            .required("Email cím szükséges")
+            .email("Érvénytelen email"),
+        password: Yup.string().required("Jelszó szükséges"),
+    });
 
-        const userName = event.target.elements[0].value;
-        const password = event.target.elements[1].value;
-
-        (async () => {
-            const response = await fetch(
-                "https://developer.webstar.hu/rest/frontend-felveteli/v2/authentication/",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Applicant-Id": "45PdMect",
-                    },
-                    body: JSON.stringify({
-                        username: userName,
-                        password: password,
-                    }),
-                }
-            );
-
-            const responseData = await response.json();
-
-            if (!response.ok) {
-                console.log(responseData.error);
-            } else {
-                console.log(responseData);
-                authCtx.login(responseData);
-                navigate("/select-character");
-            }
-        })();
+    function onSubmit(values, actions) {
+        submitHandler(values);
+        actions.setSubmitting(false);
     }
 
     return (
-        <form onSubmit={submitHandler}>
-            <div className={classes.form_group}>
-                <label htmlFor="user-name">Felhasználónév</label>
-                <input type="text" id="user-name" />
-            </div>
-            <div className={classes.form_group}>
-                <label htmlFor="password">Jelszó</label>
-                <input type="password" id="password" />
-            </div>
-            <PrimaryButton type="submit">Belépés</PrimaryButton>
-        </form>
+        <Formik
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            validationSchema={validationSchema}
+        >
+            {({ handleSubmit, isSubmitting }) => (
+                <Form onSubmit={handleSubmit}>
+                    <div className={classes.form_group}>
+                        <label htmlFor="user-name">Felhasználónév</label>
+                        <Field name="email" id="user-name" />
+                        <ErrorMessage
+                            className={classes.form_group__error_text}
+                            name="email"
+                            component="span"
+                        />
+                    </div>
+                    <div className={classes.form_group}>
+                        <label htmlFor="password">Jelszó</label>
+                        <Field name="password" id="password" type="password" />
+                        <ErrorMessage
+                            className={classes.form_group__error_text}
+                            name="password"
+                            component="span"
+                        />
+                    </div>
+                    <PrimaryButton type="submit" disabled={isSubmitting}>
+                        Belépés
+                    </PrimaryButton>
+                </Form>
+            )}
+        </Formik>
     );
 };
 
