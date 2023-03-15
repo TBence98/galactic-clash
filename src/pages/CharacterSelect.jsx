@@ -6,6 +6,7 @@ import CharactersContext from "../store/characters-context";
 import AuthContext from "../store/auth-context";
 import SlideHeader from "../components/SlideHeader/SlideHeader";
 import CharacterSlide from "../components/CharacterSlide/CharacterSlide";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 const CharacterSelect = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -37,7 +38,11 @@ const CharacterSelect = () => {
             }
         })();
 
-        return <h1>Loading...</h1>;
+        return (
+            <div className={classes.spinner_container}>
+                <LoadingSpinner />
+            </div>
+        );
     }
 
     const activeCharacter = charactersCtx.characters[activeSlide];

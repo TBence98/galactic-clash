@@ -1,0 +1,19 @@
+.spinner {
+    width: 110px;
+    height: 110px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid var(--clr-accent-500);
+    border-color: var(--clr-accent-500) transparent var(--clr-accent-500)
+        transparent;
+    animation: spinner 1.2s linear infinite;
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
