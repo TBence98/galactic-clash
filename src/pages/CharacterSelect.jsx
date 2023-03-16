@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 
 import classes from "./CharacterSelect.module.css";
 
@@ -15,6 +15,7 @@ const CharacterSelect = () => {
 
     const charactersCtx = useContext(CharactersContext);
     const authCtx = useContext(AuthContext);
+    const swiperRef = useRef(null);
 
     useEffect(() => {
         (async () => {
@@ -68,19 +69,24 @@ const CharacterSelect = () => {
 
     const activeCharacter = charactersCtx.characters[activeSlide];
 
-    function nextSlide() {
-        if (activeSlide === charactersCtx.characters.length - 1) {
-            setActiveSlide(0);
-        } else {
-            setActiveSlide((prevValue) => prevValue + 1);
+    function nextSlide(isSwipped) {
+        if (swiperRef.current.swiper.animating) return;
+
+        if (!isSwipped) {
+            swiperRef.current.swiper.slideNext(800, false);
         }
+
+        setActiveSlide(swiperRef.current.swiper.realIndex);
     }
-    function prevSlide() {
-        if (activeSlide === 0) {
-            setActiveSlide(charactersCtx.characters.length - 1);
-        } else {
-            setActiveSlide((prevValue) => prevValue - 1);
+
+    function prevSlide(isSwipped) {
+        if (swiperRef.current.swiper.animating) return;
+
+        if (!isSwipped) {
+            swiperRef.current.swiper.slidePrev(800, false);
         }
+
+        setActiveSlide(swiperRef.current.swiper.realIndex);
     }
 
     return (
@@ -97,6 +103,9 @@ const CharacterSelect = () => {
                 name={activeCharacter.name}
                 description={activeCharacter.description}
                 id={activeCharacter.id}
+                nextSlide={nextSlide}
+                prevSlide={prevSlide}
+                ref={swiperRef}
             />
         </div>
     );

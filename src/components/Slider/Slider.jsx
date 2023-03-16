@@ -17,12 +17,12 @@ const Slider = ({ activeSlide, slideLength, nextSlide, prevSlide }) => {
             <button
                 className={`${classes.button} ${classes.button__prev}`}
                 type="button"
-                onClick={prevSlide}
+                onClick={() => prevSlide(false)}
             ></button>
             <button
                 className={`${classes.button} ${classes.button__next}`}
                 type="button"
-                onClick={nextSlide}
+                onClick={() => nextSlide(false)}
             ></button>
         </div>
     );

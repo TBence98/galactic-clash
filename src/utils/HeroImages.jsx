@@ -11,7 +11,7 @@ import stormtrooper from "../assets/stormtrooper.png";
 import vader from "../assets/vader.png";
 import yoda from "../assets/yoda.png";
 
-const HeroImages = {
+/* const HeroImages = {
     anakin: <img src={anakin} alt="Anakin Skywalker" />,
     boba: <img src={boba} alt="Boba Fett" />,
     grievous: <img src={grievous} alt="Grievous" />,
@@ -24,6 +24,21 @@ const HeroImages = {
     stormtrooper: <img src={stormtrooper} alt="Stormtrooper" />,
     vader: <img src={vader} alt="Darth Vader" />,
     yoda: <img src={yoda} alt="Yoda" />,
-};
+}; */
+
+const HeroImages = [
+    <img src={vader} alt="Darth Vader" />,
+    <img src={maul} alt="Darth Maul" />,
+    <img src={grievous} alt="Grievous" />,
+    <img src={boba} alt="Boba Fett" />,
+    <img src={phasma} alt="Phasma százados" />,
+    <img src={stormtrooper} alt="Stormtrooper" />,
+    <img src={luke} alt="Luke Skywalker" />,
+    <img src={kenobi} alt="Obi-Wan Kenobi" />,
+    <img src={anakin} alt="Anakin Skywalker" />,
+    <img src={rey} alt="Rey Palpatine" />,
+    <img src={yoda} alt="Yoda" />,
+    <img src={solo} alt="Han Solo" />,
+];
 
 export default HeroImages;
