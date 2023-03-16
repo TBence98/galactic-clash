@@ -18,16 +18,23 @@
     }
 }
 
-.spinner_container {
+.pre_response_container {
     width: fit-content;
     margin: 30vh auto 0 auto;
 }
 
-.spinner_container::before {
+.pre_response_container::before {
     content: "";
     width: 100vw;
     height: 100vh;
     position: absolute;
+    z-index: -10;
     inset: 0;
     background-color: #000;
+}
+
+.pre_response_container__error_message {
+    font-family: var(--ff-primary-bold);
+    font-size: var(--fs-500);
+    color: var(--clr-primary-100);
 }

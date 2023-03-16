@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import classes from "./CharacterSelect.module.css";
 
@@ -16,30 +16,51 @@ const CharacterSelect = () => {
     const charactersCtx = useContext(CharactersContext);
     const authCtx = useContext(AuthContext);
 
-    if (!charactersCtx.characters) {
+    useEffect(() => {
         (async () => {
-            const response = await fetch(
-                "https://developer.webstar.hu/rest/frontend-felveteli/v2/characters/",
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Applicant-Id": "45PdMect",
-                        "Application-Authorization": "Bearer " + authCtx.token,
-                    },
+            try {
+                const response = await fetch(
+                    "https://developer.webstar.hu/rest/frontend-felveteli/v2/characters/",
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Applicant-Id": "45PdMect",
+                            "Application-Authorization":
+                                "Bearer " + authCtx.token,
+                        },
+                    }
+                );
+
+                const responseData = await response.json();
+
+                if (!response.ok) {
+                    console.log(responseData.error);
+                    setError(true);
+                } else {
+                    charactersCtx.addCharacters(responseData.characters);
+                    setIsLoading(false);
                 }
-            );
-
-            const responseData = await response.json();
-
-            if (!response.ok) {
-                console.log(responseData.error);
-            } else {
-                charactersCtx.addCharacters(responseData.characters);
+            } catch (error) {
+                setError(true);
+            } finally {
+                setIsLoading(false);
             }
         })();
+    }, []);
 
+    if (error) {
         return (
-            <div className={classes.spinner_container}>
+            <div className={classes.pre_response_container}>
+                <h1 className={classes.pre_response_container__error_message}>
+                    Sikertelen karakter betöltés
+                </h1>
+            </div>
+        );
+    }
+
+    if (isLoading) {
+        return (
+            <div className={classes.pre_response_container}>
                 <LoadingSpinner />
             </div>
         );
