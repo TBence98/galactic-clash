@@ -73,7 +73,7 @@ const CharacterSelect = () => {
         if (swiperRef.current.swiper.animating) return;
 
         if (!isSwipped) {
-            swiperRef.current.swiper.slideNext(800, false);
+            swiperRef.current.swiper.slideNext(600, false);
         }
 
         setActiveSlide(swiperRef.current.swiper.realIndex);
@@ -83,7 +83,7 @@ const CharacterSelect = () => {
         if (swiperRef.current.swiper.animating) return;
 
         if (!isSwipped) {
-            swiperRef.current.swiper.slidePrev(800, false);
+            swiperRef.current.swiper.slidePrev(600, false);
         }
 
         setActiveSlide(swiperRef.current.swiper.realIndex);
@@ -105,6 +105,7 @@ const CharacterSelect = () => {
                 id={activeCharacter.id}
                 nextSlide={nextSlide}
                 prevSlide={prevSlide}
+                characters={charactersCtx.characters}
                 ref={swiperRef}
             />
         </div>

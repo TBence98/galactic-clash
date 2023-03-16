@@ -3,11 +3,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import classes from "./CharacterSlide.module.css";
 
-import HeroImages from "../../utils/HeroImages";
+import getSortedCharacterImages from "../../utils/getSortedCharacterImages";
 
 const CharacterSlide = React.forwardRef(
-    ({ name, description, id, nextSlide, prevSlide }, ref) => {
+    ({ name, description, id, nextSlide, prevSlide, characters }, ref) => {
         const nameParts = name.split("<br>");
+        const images = getSortedCharacterImages(characters);
 
         return (
             <section className={classes.character_slide}>
@@ -28,13 +29,13 @@ const CharacterSlide = React.forwardRef(
                     <Swiper
                         ref={ref}
                         effect
-                        speed={800}
+                        speed={600}
                         slidesPerView={1}
                         loop
                         onSlideNextTransitionEnd={() => nextSlide(true)}
                         onSlidePrevTransitionEnd={() => prevSlide(true)}
                     >
-                        {HeroImages.map((img, index) => (
+                        {images.map((img, index) => (
                             <SwiperSlide key={index}>{img}</SwiperSlide>
                         ))}
                     </Swiper>
