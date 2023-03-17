@@ -8,14 +8,21 @@
     font-family: var(--ff-star-jedi);
     font-size: var(--fs-800);
     color: var(--clr-primary-100);
-    line-height: 5.8rem;
+    line-height: 103%;
     margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 1760px) {
+    .character_slide__title {
+        font-size: var(--fs-550);
+    }
 }
 
 .character_slide__description {
     font-family: var(--ff-primary-regular);
     font-size: var(--fs-300);
     color: var(--clr-primary-100);
+    max-width: 45rem;
 }
 
 .character_slide__image_container {
