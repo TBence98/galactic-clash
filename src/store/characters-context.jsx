@@ -10,6 +10,12 @@ const CharactersContext = React.createContext({
     clear: () => {},
 });
 
+/* make sure to execute this function before adding a clashing character
+in order to the first character in the clashingCharacters array be the dark one */
+/* function sortByCharacterSide(characters) {
+    return characters.sort((a, b) => a.side.localCompare(b.side));
+} */
+
 export const CharactersContextProvider = (props) => {
     const [characters, setCharacters] = useState(null);
     const [clashingCharacters, setClashingCharacters] = useState([]);

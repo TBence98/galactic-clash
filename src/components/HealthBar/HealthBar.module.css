@@ -1,0 +1,17 @@
+.health_bar {
+    height: 1.3rem;
+    background-color: var(--clr-primary-100);
+    border-radius: 5px;
+}
+
+.health_bar_progress {
+    height: 100%;
+}
+
+.health_bar_progress--dark {
+    background-color: var(--clr-danger-500);
+}
+
+.health_bar_progress--light {
+    background-color: var(--clr-accent-500);
+}

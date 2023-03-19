@@ -11,7 +11,7 @@ import stormtrooper from "../assets/stormtrooper.png";
 import vader from "../assets/vader.png";
 import yoda from "../assets/yoda.png";
 
-const heroImages = {
+export const heroImages = {
     anakin: <img src={anakin} alt="Anakin Skywalker" />,
     vader: <img src={vader} alt="Darth Vader" />,
     maul: <img src={maul} alt="Darth Maul" />,
