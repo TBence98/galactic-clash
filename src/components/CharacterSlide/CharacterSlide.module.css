@@ -20,6 +20,7 @@
     color: var(--clr-primary-100);
     line-height: 103%;
     margin-bottom: 1rem;
+    text-transform: lowercase;
 }
 
 @media screen and (max-width: 1760px) {
