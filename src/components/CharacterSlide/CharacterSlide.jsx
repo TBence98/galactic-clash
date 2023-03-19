@@ -41,7 +41,7 @@ const CharacterSlide = React.forwardRef(
                         ))}
                     </Swiper>
                 </div>
-                <Modules isActiveCharacter={false} />
+                <Modules id={id} />
             </section>
         );
     }

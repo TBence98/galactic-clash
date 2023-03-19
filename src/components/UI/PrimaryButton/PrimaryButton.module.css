@@ -6,4 +6,5 @@
     font-family: var(--ff-primary-bold);
     font-size: var(--fs-300);
     border-radius: 6px;
+    cursor: pointer;
 }

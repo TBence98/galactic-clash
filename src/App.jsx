@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import AuthPage from "./pages/AuthPage";
 import RootLayout from "./components/RootLayout/RootLayout";
 import CharacterSelect from "./pages/CharacterSelect";
+import Clash from "./pages/Clash";
 import AuthContext from "./store/auth-context";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                             path="/select-character"
                             element={<CharacterSelect />}
                         />
+                        <Route path="/clash" element={<Clash />} />
                     </Route>
                 )}
             </Routes>

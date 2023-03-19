@@ -2,8 +2,10 @@ import React, { useState } from "react";
 
 const CharactersContext = React.createContext({
     characters: null,
+    clashingCharacters: [],
     addCharacters: (characters) => {},
-    addClashingCharacter: (character) => {},
+    addClashingCharacter: (characterId) => {},
+    hasClashingCharacter: (characterId) => {},
     removeClashingCharacter: (characterId) => {},
     clear: () => {},
 });
@@ -12,12 +14,16 @@ export const CharactersContextProvider = (props) => {
     const [characters, setCharacters] = useState(null);
     const [clashingCharacters, setClashingCharacters] = useState([]);
 
-    function addClashingCharacter(character) {
+    function addClashingCharacter(characterId) {
         if (clashingCharacters.length >= 2) {
             throw new RangeError("You can only have 2 clashingCharacters");
         }
 
+        const character = characters.find(
+            (character) => character.id === characterId
+        );
         const newClashingCharacters = [...clashingCharacters];
+
         newClashingCharacters.push(character);
         setClashingCharacters(newClashingCharacters);
     }
@@ -28,6 +34,12 @@ export const CharactersContextProvider = (props) => {
         );
 
         setClashingCharacters(filteredClashingCharacters);
+    }
+
+    function hasClashingCharacter(characterId) {
+        return clashingCharacters.some(
+            (character) => character.id === characterId
+        );
     }
 
     function addCharacters(characters) {
@@ -45,6 +57,7 @@ export const CharactersContextProvider = (props) => {
         addCharacters,
         addClashingCharacter,
         removeClashingCharacter,
+        hasClashingCharacter,
         clear,
     };
 
