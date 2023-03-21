@@ -3,8 +3,10 @@
     font-size: var(--fs-600);
     color: var(--clr-primary-100);
     text-align: center;
-    letter-spacing: 0.3rem;
-    margin-bottom: 2rem;
+    /* margin-top: 0.3rem; */
+    /* margin-bottom: 0.9rem; */
+    margin-top: 2vh;
+    margin-bottom: 4vh;
 }
 
 .main_title::before {
@@ -26,7 +28,7 @@
 
 .clash_container {
     display: grid;
-    grid-template-columns: 1fr 270px 1fr;
+    grid-template-columns: 1fr 368px 1fr;
     color: var(--clr-primary-100);
 }
 
@@ -37,6 +39,8 @@
 }
 
 .versus_container span {
+    display: block;
+    margin-bottom: 5rem;
     font-family: var(--ff-distant-galaxy);
     font-size: var(--fs-900);
 }

@@ -3,17 +3,44 @@
 }
 
 .slide_animation--dark {
-    transform: translateX(calc((200% + 135px) / 3));
+    transform: translateX(calc((200% + 368px) / 3));
 }
 
 .slide_animation--light {
-    transform: translateX(calc(-1 * (200% + 135px) / 3));
+    transform: translateX(calc(-1 * (200% + 368px) / 3));
     grid-column: 3 / 4;
 }
 
 .side_text {
+    display: block;
+    width: fit-content;
     font-family: var(--ff-primary-black);
     font-size: var(--fs-400);
+}
+
+.side_text--dark {
+    margin-left: 18%;
+}
+
+.side_text--light {
+    margin: 0 12% 0 auto;
+}
+
+.character_img_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+}
+
+.character_img_container img {
+    max-height: 40vh;
+}
+
+@media screen and (min-height: 830px) {
+    .character_img_container img {
+        max-height: 50vh;
+    }
 }
 
 .character_name {
@@ -21,6 +48,8 @@
     font-size: var(--fs-525);
     color: var(--clr-primary-100);
     text-transform: lowercase;
+    display: block;
+    margin-bottom: 1.2rem;
 }
 
 .character_name--center {
@@ -40,11 +69,27 @@
     padding: 0.6rem 2rem;
     border-radius: 6px;
     margin: 1rem auto 0 auto;
+    opacity: 0;
+    animation-name: appear;
+    animation-duration: 2s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
 }
 
 .health_percentage {
     font-family: var(--ff-primary-bold);
     font-size: var(--fs-400);
     display: block;
+    margin-top: 0.7rem;
     text-align: center;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }

@@ -20,11 +20,19 @@ const ClashCharacterItem = ({
     return (
         <div className={containerClasses}>
             {!isWinner ? (
-                <span className={classes.side_text}>
+                <span
+                    className={`${classes.side_text} ${
+                        side === "DARK"
+                            ? classes["side_text--dark"]
+                            : classes["side_text--light"]
+                    }`}
+                >
                     {side === "DARK" ? "Sötét oldal" : "Világos oldal"}
                 </span>
             ) : null}
-            <div>{characterImg}</div>
+            <div className={classes.character_img_container}>
+                {characterImg}
+            </div>
             <div>
                 <span
                     className={`${classes.character_name} ${

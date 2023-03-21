@@ -1,11 +1,12 @@
 .health_bar {
     height: 1.3rem;
     background-color: var(--clr-primary-100);
-    border-radius: 5px;
+    border-radius: 6px;
 }
 
 .health_bar_progress {
     height: 100%;
+    border-radius: 6px;
 }
 
 .health_bar_progress--dark {
