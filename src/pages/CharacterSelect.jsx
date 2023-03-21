@@ -9,7 +9,7 @@ import CharacterSlide from "../components/CharacterSlide/CharacterSlide";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 const CharacterSelect = () => {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [activeSlide, setActiveSlide] = useState(0);
 
@@ -18,35 +18,38 @@ const CharacterSelect = () => {
     const swiperRef = useRef(null);
 
     useEffect(() => {
-        (async () => {
-            try {
-                const response = await fetch(
-                    "https://developer.webstar.hu/rest/frontend-felveteli/v2/characters/",
-                    {
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Applicant-Id": "45PdMect",
-                            "Application-Authorization":
-                                "Bearer " + authCtx.token,
-                        },
+        if (charactersCtx.characters.length === 0) {
+            (async () => {
+                try {
+                    setIsLoading(true);
+                    const response = await fetch(
+                        "https://developer.webstar.hu/rest/frontend-felveteli/v2/characters/",
+                        {
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Applicant-Id": "45PdMect",
+                                "Application-Authorization":
+                                    "Bearer " + authCtx.token,
+                            },
+                        }
+                    );
+
+                    const responseData = await response.json();
+
+                    if (!response.ok) {
+                        console.log(responseData.error);
+                        setError(true);
+                    } else {
+                        charactersCtx.addCharacters(responseData.characters);
+                        setIsLoading(false);
                     }
-                );
-
-                const responseData = await response.json();
-
-                if (!response.ok) {
-                    console.log(responseData.error);
+                } catch (error) {
                     setError(true);
-                } else {
-                    charactersCtx.addCharacters(responseData.characters);
+                } finally {
                     setIsLoading(false);
                 }
-            } catch (error) {
-                setError(true);
-            } finally {
-                setIsLoading(false);
-            }
-        })();
+            })();
+        }
     }, []);
 
     if (error) {
