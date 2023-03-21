@@ -30,31 +30,6 @@
     color: var(--clr-primary-100);
 }
 
-.side_text {
-    font-family: var(--ff-primary-black);
-    font-size: var(--fs-400);
-}
-
-.character_name {
-    font-family: var(--ff-star-jedi);
-    font-size: var(--fs-525);
-    color: var(--clr-primary-100);
-    text-transform: lowercase;
-}
-
-.character_name--center {
-    display: block;
-    width: fit-content;
-    margin: 0 auto;
-}
-
-.healt_percentage {
-    font-family: var(--ff-primary-bold);
-    font-size: var(--fs-400);
-    display: block;
-    text-align: center;
-}
-
 .versus_container {
     display: flex;
     align-items: center;
@@ -66,43 +41,6 @@
     font-size: var(--fs-900);
 }
 
-/* winner styles */
-
-.winner_container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.winner_img_container {
-    max-width: 45%;
-}
-
-.back_to_board_link {
-    display: block;
-    width: fit-content;
-    text-decoration: none;
-    font-family: var(--ff-primary-bold);
-    font-size: var(--fs-300);
-    color: var(--clr-secondary-900);
-    background-color: var(--clr-accent-500);
-    padding: 0.6rem 2rem;
-    border-radius: 6px;
-    margin: 1rem auto 0 auto;
-}
-
-/* with animation */
-
 .hide {
-    visibility: hidden;
-}
-
-.dark_animation {
-    transition: transform 1s ease-out;
-    transform: translateX(calc((200% + 135px) / 3));
-}
-
-.light_animation {
-    transition: transform 1s ease-out;
-    transform: translateX(calc(-1 * (200% + 135px) / 3));
+    display: none;
 }

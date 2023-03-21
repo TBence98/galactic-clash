@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { heroImages } from "../utils/getSortedCharacterImages";
 import CharactersContext from "../store/characters-context";
-import HealthBar from "../components/HealthBar/HealthBar";
+import ClashCharacterItem from "../components/ClashCharacterItem/ClashCharacterItem";
 
 import classes from "./Clash.module.css";
 
@@ -21,7 +21,9 @@ const Clash = () => {
     }
 
     const [darkCharacterHp, setDarkCharacterHp] = useState(100);
-    const [lightCharactedHp, setLightCharacterHp] = useState(100);
+    const [lightCharacterHp, setLightCharacterHp] = useState(100);
+    const isDarkCharacterWon = lightCharacterHp <= 0;
+    const isLightCharaterWon = darkCharacterHp <= 0;
 
     useEffect(() => {
         let timer;
@@ -37,12 +39,12 @@ const Clash = () => {
             }
         };
 
-        if (darkCharacterHp > 0 && lightCharactedHp > 0) {
+        if (darkCharacterHp > 0 && lightCharacterHp > 0) {
             timer = setTimeout(tick, 1500);
         }
 
         return () => clearTimeout(timer);
-    }, [darkCharacterHp, lightCharactedHp]);
+    }, [darkCharacterHp, lightCharacterHp]);
 
     const darkCharacter = characterCtx.clashingCharacters.find(
         (character) => character.side === "DARK"
@@ -55,103 +57,42 @@ const Clash = () => {
     const darkCharacterName = darkCharacter.name.split("<br>").join(" ");
     const lightCharacterName = lightCharacter.name.split("<br>").join(" ");
 
-    const darkSideContainerClasses = `${classes.clash_container__dark_side} ${
-        darkCharacterHp <= 0
-            ? classes.hide
-            : lightCharactedHp <= 0
-            ? classes.dark_animation
-            : ""
-    }`;
-    const lightSideContainerClasses = `${classes.clash_container__light_side} ${
-        lightCharactedHp <= 0
-            ? classes.hide
-            : darkCharacterHp <= 0
-            ? classes.light_animation
-            : ""
-    }`;
-
     return (
         <>
-            <p className={classes.main_title}>a tudás legyen veled!</p>
+            <p className={classes.main_title}>
+                {isDarkCharacterWon || isLightCharaterWon
+                    ? "a csata nyertese"
+                    : "a tudás legyen veled!"}
+            </p>
             <div className={classes.clash_container}>
-                <div className={darkSideContainerClasses}>
-                    <span className={classes.side_text}>Sötét oldal</span>
-                    <div className={classes.character_img_container}>
-                        {darkCharacterImg}
-                    </div>
-                    <div>
-                        <span
-                            className={`${classes.character_name} ${
-                                lightCharactedHp <= 0
-                                    ? classes["character_name--center"]
-                                    : ""
-                            }`}
-                        >
-                            {darkCharacterName}
-                        </span>
-                    </div>
-                    {lightCharactedHp <= 0 ? (
-                        <Link
-                            to="/select-character"
-                            className={classes.back_to_board_link}
-                        >
-                            Vissza a fedélzetra
-                        </Link>
-                    ) : (
-                        <>
-                            <HealthBar
-                                side="DARK"
-                                progress={darkCharacterHp.toString()}
-                            />
+                {darkCharacterHp > 0 ? (
+                    <ClashCharacterItem
+                        side="DARK"
+                        characterImg={darkCharacterImg}
+                        characterName={darkCharacterName}
+                        isWinner={isDarkCharacterWon}
+                        characterHp={darkCharacterHp}
+                    />
+                ) : null}
 
-                            <span className={classes.healt_percentage}>
-                                {darkCharacterHp}%
-                            </span>
-                        </>
-                    )}
-                </div>
                 <div
                     className={`${classes.versus_container} ${
-                        lightCharactedHp <= 0 || darkCharacterHp <= 0
+                        isLightCharaterWon || isDarkCharacterWon
                             ? classes.hide
                             : ""
                     }`}
                 >
                     <span>VS</span>
                 </div>
-                <div className={lightSideContainerClasses}>
-                    <span className={classes.side_text}>Világos oldal</span>
-                    <div className={classes.character_img_container}>
-                        {lightCharacterImg}
-                    </div>
-                    <span
-                        className={`${classes.character_name} ${
-                            darkCharacterHp <= 0
-                                ? classes["character_name--center"]
-                                : ""
-                        }`}
-                    >
-                        {lightCharacterName}
-                    </span>
-                    {darkCharacterHp <= 0 ? (
-                        <Link
-                            to="/select-character"
-                            className={classes.back_to_board_link}
-                        >
-                            Vissza a fedélzetra
-                        </Link>
-                    ) : (
-                        <>
-                            <HealthBar
-                                side="LIGHT"
-                                progress={lightCharactedHp.toString()}
-                            />
-                            <span className={classes.healt_percentage}>
-                                {lightCharactedHp}%
-                            </span>
-                        </>
-                    )}
-                </div>
+                {lightCharacterHp > 0 ? (
+                    <ClashCharacterItem
+                        side="LIGHT"
+                        characterImg={lightCharacterImg}
+                        characterName={lightCharacterName}
+                        isWinner={isLightCharaterWon}
+                        characterHp={lightCharacterHp}
+                    />
+                ) : null}
             </div>
         </>
     );

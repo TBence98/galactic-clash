@@ -1,0 +1,50 @@
+.slide_animation {
+    transition: transform 1s ease-out;
+}
+
+.slide_animation--dark {
+    transform: translateX(calc((200% + 135px) / 3));
+}
+
+.slide_animation--light {
+    transform: translateX(calc(-1 * (200% + 135px) / 3));
+    grid-column: 3 / 4;
+}
+
+.side_text {
+    font-family: var(--ff-primary-black);
+    font-size: var(--fs-400);
+}
+
+.character_name {
+    font-family: var(--ff-star-jedi);
+    font-size: var(--fs-525);
+    color: var(--clr-primary-100);
+    text-transform: lowercase;
+}
+
+.character_name--center {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.back_to_board_link {
+    display: block;
+    width: fit-content;
+    text-decoration: none;
+    font-family: var(--ff-primary-bold);
+    font-size: var(--fs-300);
+    color: var(--clr-secondary-900);
+    background-color: var(--clr-accent-500);
+    padding: 0.6rem 2rem;
+    border-radius: 6px;
+    margin: 1rem auto 0 auto;
+}
+
+.health_percentage {
+    font-family: var(--ff-primary-bold);
+    font-size: var(--fs-400);
+    display: block;
+    text-align: center;
+}
