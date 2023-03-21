@@ -26,7 +26,7 @@
 
 .clash_container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 270px 1fr;
     color: var(--clr-primary-100);
 }
 
@@ -40,6 +40,12 @@
     font-size: var(--fs-525);
     color: var(--clr-primary-100);
     text-transform: lowercase;
+}
+
+.character_name--center {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
 }
 
 .healt_percentage {
@@ -73,6 +79,8 @@
 }
 
 .back_to_board_link {
+    display: block;
+    width: fit-content;
     text-decoration: none;
     font-family: var(--ff-primary-bold);
     font-size: var(--fs-300);
@@ -80,5 +88,21 @@
     background-color: var(--clr-accent-500);
     padding: 0.6rem 2rem;
     border-radius: 6px;
-    margin-top: 1rem;
+    margin: 1rem auto 0 auto;
+}
+
+/* with animation */
+
+.hide {
+    visibility: hidden;
+}
+
+.dark_animation {
+    transition: transform 1s ease-out;
+    transform: translateX(calc((200% + 135px) / 3));
+}
+
+.light_animation {
+    transition: transform 1s ease-out;
+    transform: translateX(calc(-1 * (200% + 135px) / 3));
 }
