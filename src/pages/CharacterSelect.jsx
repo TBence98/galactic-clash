@@ -9,7 +9,7 @@ import CharacterSlide from "../components/CharacterSlide/CharacterSlide";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 const CharacterSelect = () => {
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [activeSlide, setActiveSlide] = useState(0);
 
@@ -18,7 +18,7 @@ const CharacterSelect = () => {
     const swiperRef = useRef(null);
 
     useEffect(() => {
-        if (charactersCtx.characters.length === 0) {
+        if (!charactersCtx.characters) {
             (async () => {
                 try {
                     setIsLoading(true);
@@ -49,6 +49,8 @@ const CharacterSelect = () => {
                     setIsLoading(false);
                 }
             })();
+        } else {
+            setIsLoading(false);
         }
     }, []);
 
