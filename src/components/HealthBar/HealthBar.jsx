@@ -6,7 +6,10 @@ const HealthBar = ({ side, progress }) => {
     return (
         <div className={classes.health_bar}>
             <div
-                style={{ width: progressPercentage }}
+                style={{
+                    width: progressPercentage,
+                    transition: "width 0.1s linear",
+                }}
                 className={`${classes.health_bar_progress} ${
                     side === "DARK"
                         ? classes["health_bar_progress--dark"]
