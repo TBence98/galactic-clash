@@ -3,10 +3,8 @@
     font-size: var(--fs-600);
     color: var(--clr-primary-100);
     text-align: center;
-    /* margin-top: 0.3rem; */
-    /* margin-bottom: 0.9rem; */
-    margin-top: 2vh;
-    margin-bottom: 4vh;
+    margin-top: 0.7vh;
+    margin-bottom: 3vh;
 }
 
 .main_title::before {
