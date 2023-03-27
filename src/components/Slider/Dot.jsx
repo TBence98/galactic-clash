@@ -1,4 +1,4 @@
-import classes from "./dot.module.css";
+import classes from "./Dot.module.css";
 
 const Dot = ({ type }) => {
     return (
